@@ -1,3 +1,29 @@
-<p>
-  list works!
-</p>
+<!-- only take up part of the screen-->
+<div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="80" fxFlex.gt-md="60" 
+  fxFlexOffset.md="10" fxFlexOffset.gt-md="20" class="all-around-margin">
+  <!-- header card-->
+  <mat-card>
+    <mat-card-content>
+      Header card
+    </mat-card-content>
+  </mat-card>
+  <!--end header card-->
+  <mat-accordion>
+
+    <mat-expansion-panel *ngFor="let item of items">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          This is a title
+        </mat-panel-title>
+        <mat-panel-description>
+          This is the description
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <!--this is the body-->
+
+      HELLO WORLD FROM EXPANSION PANEL!
+      <!--end body -->
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</div>

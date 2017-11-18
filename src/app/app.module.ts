@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material';
 import { ListModule } from './list/list.module';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+import { ServicesModule } from './services/services.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -20,6 +21,8 @@ import { environment } from '../environments/environment';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    
+    ServicesModule,
 
     // firebase, keep off for now
     // AngularFireModule.initializeApp(environment.firebase),
