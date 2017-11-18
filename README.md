@@ -1,6 +1,6 @@
 # FirebaseList
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
+A simple, firebase application using angular, angular material, firebase, and travis CI 
 
 ## Development server
 
