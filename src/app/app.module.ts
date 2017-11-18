@@ -19,9 +19,6 @@ import { ListModule } from './list/list.module';
     HttpModule,
     AppRoutingModule,
 
-    // application modules
-    ListModule,
-
     // angular material
     BrowserAnimationsModule,
     MatToolbarModule

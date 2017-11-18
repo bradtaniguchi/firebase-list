@@ -9,6 +9,7 @@ import { ListRoutingModule } from './list-routing.module';
 
     ListRoutingModule
   ],
-  declarations: [ListComponent]
+  declarations: [ListComponent],
+  bootstrap: [ListComponent]
 })
 export class ListModule { }
