@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material';
+import { ListModule } from './list/list.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,7 +19,10 @@ import { MatToolbarModule } from '@angular/material';
     HttpModule,
     AppRoutingModule,
 
-    // angular
+    // application modules
+    ListModule,
+
+    // angular material
     BrowserAnimationsModule,
     MatToolbarModule
   ],
