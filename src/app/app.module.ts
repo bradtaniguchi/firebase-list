@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material';
 import { ListModule } from './list/list.module';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent
@@ -18,6 +20,9 @@ import { ListModule } from './list/list.module';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+
+    // firebase, keep off for now
+    // AngularFireModule.initializeApp(environment.firebase),
 
     // angular material
     BrowserAnimationsModule,
