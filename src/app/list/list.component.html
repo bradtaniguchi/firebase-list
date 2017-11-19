@@ -38,12 +38,22 @@
       <mat-expansion-panel *ngIf="showNewItem">
         <mat-expansion-panel-header>
           <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
-            <mat-form-field floatPlaceholder="never">
+            <mat-form-field floatPlaceholder="never" fxFlex="75">
               <input matInput
                 placeholder="Name of Item"
                 name="name"
                 #name="ngModel"
                 [(ngModel)]="item.name"
+                (click)="stopProp($event)"
+                required
+                >
+            </mat-form-field>
+            <mat-form-field floatPlaceholder="never" fxFlex="25">
+              <input matInput
+                placeholder="Amount"
+                name="amount"
+                #amount="ngModel"
+                [(ngModel)]="item.amount"
                 (click)="stopProp($event)"
                 required
                 >
