@@ -7,8 +7,10 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test:ci": "ng test --single-run --no-progress --browser=chrome_travis_ci",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "e2e:ci": "ng e2e --no-progress --config=protractor-ci.conf.js",
     "deploy": "firebase deploy"
   },
   "private": true,
