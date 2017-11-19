@@ -21,11 +21,11 @@ import { ServicesModule } from './services/services.module';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    
+
     ServicesModule,
 
     // firebase, keep off for now
-    // AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase),
 
     // angular material
     BrowserAnimationsModule,
