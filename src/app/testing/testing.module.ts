@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import * as matAngular from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 const shared = [
   matAngular.MatToolbarModule,
@@ -11,6 +12,9 @@ const shared = [
   matAngular.MatInputModule,
   matAngular.MatExpansionModule,
   matAngular.MatAutocompleteModule,
+
+  // common angular modules
+  FormsModule,
 ];
 @NgModule({
   imports: shared,

@@ -1,31 +1,85 @@
 <!-- only take up part of the screen-->
 <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="80" fxFlex.gt-md="60" 
   fxFlexOffset.md="10" fxFlexOffset.gt-md="20" class="all-around-margin">
-  <!-- header card-->
-  <mat-card>
-    <mat-card-content>
-      Header card
-    </mat-card-content>
-  </mat-card>
-  <!--end header card-->
-  <mat-accordion>
 
+  <mat-accordion>
     <mat-expansion-panel *ngFor="let item of (items | async)">
-      test
       <mat-expansion-panel-header>
-        <mat-panel-title>
-          This is a title
+        <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+          {{item.name}}
         </mat-panel-title>
-        <mat-panel-description>
-          <!-- This is the description -->
-          {{item | json}}
+        <mat-panel-description fxLayout="row" fxLayoutAlign="start center">
+          <span fxFlex></span>
+          <span class="small-text">
+            # {{item.amount}}
+          </span>
+          <span>
+            <button mat-icon-button 
+              data-item-edit 
+              aria-label="Edit Item"
+              (click)="edit(item)">
+              <mat-icon class="dark">edit</mat-icon>
+            </button>
+          </span>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <!--this is the body-->
-
-      HELLO WORLD FROM EXPANSION PANEL!
+      <div>
+        {{item.description}}
+      </div>
+      <!-- some testing code-->
+        <pre>
+          {{item | json}}
+        </pre>
       <!--end body -->
     </mat-expansion-panel>
+    <!-- create panel -->
+    <form #form="ngForm" (ngSubmit)="submit(item)">
+      <mat-expansion-panel *ngIf="showNewItem">
+        <mat-expansion-panel-header>
+          <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+            <mat-form-field floatPlaceholder="never">
+              <input matInput
+                placeholder="Name of Item"
+                name="name"
+                #name="ngModel"
+                [(ngModel)]="item.name"
+                (click)="stopProp($event)"
+                required
+                >
+            </mat-form-field>
+          </mat-panel-title>
+          <!-- <mat-panel-description>
 
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+          <mat-form-field floatPlaceholder="never">
+            <textarea matInput
+              placeholder="Item Description"
+              name="description"
+              #description="ngModel"
+              [(ngModel)]="item.description"
+              rows="2"
+              >
+            </textarea>
+          </mat-form-field>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <button type="button" mat-button (click)="cancel()">
+              cancel
+            </button>
+            <button type="submit" mat-raised-button color="primary">
+              submit
+            </button>
+          </div>
+      </mat-expansion-panel>
+    </form>
   </mat-accordion>
+  <div fxLayout="row" fxLayoutAlign="end center" class="all-around-padding">
+    <button mat-button 
+      (click)="showNewItem = true" 
+      *ngIf="!showNewItem"
+      >
+      Add
+    </button>
+  </div>
 </div>

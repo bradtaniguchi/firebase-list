@@ -1,5 +1,7 @@
 @import './variables.scss';
 @import './shadows.scss';
+@import './text-fields.scss';
+@import './overrides.scss';
 
 .all-around-padding {
   padding: $padding-basic;
@@ -20,8 +22,6 @@
   border: none;
 }
 
-
-//override
-mat-icon {
-  color: $grey;
+.start.center {
+  text-align: start;
 }
