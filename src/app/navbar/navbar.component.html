@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="z-depth-2">
+  <span data-home-link class="mat-title no-margin clickable">Fabric-list</span>
+  <span fxFlex></span>
+  <span>
+    <button mat-icon-button 
+      [matMenuTriggerFor]="userMenu"
+      data-user-menu
+      aria-label="User Menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item 
+        data-user-menu-info>Info</button>
+      <button mat-menu-item 
+        data-user-menu-settings>Settings</button>
+      <button mat-menu-item 
+        data-user-menu-logout>Logout</button>
+    </mat-menu>
+  </span>
+</mat-toolbar>

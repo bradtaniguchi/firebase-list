@@ -7,11 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { ListModule } from './list/list.module';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { ServicesModule } from './services/services.module';
+import { NavbarModule } from './navbar/navbar.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -23,13 +24,9 @@ import { ServicesModule } from './services/services.module';
     AppRoutingModule,
 
     ServicesModule,
-
+    NavbarModule,
     // firebase, keep off for now
     AngularFireModule.initializeApp(environment.firebase),
-
-    // angular material
-    BrowserAnimationsModule,
-    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

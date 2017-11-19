@@ -1,0 +1,27 @@
+@import './variables.scss';
+@import './shadows.scss';
+
+.all-around-padding {
+  padding: $padding-basic;
+}
+.all-around-margin {
+  margin: $padding-basic;
+}
+.no-margin {
+  margin: 0;
+}
+.no-padding {
+  padding: 0;
+}
+.clickable {
+  cursor: pointer;
+}
+.clickable:focus {
+  border: none;
+}
+
+
+//override
+mat-icon {
+  color: $grey;
+}
