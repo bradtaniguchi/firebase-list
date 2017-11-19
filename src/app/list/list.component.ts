@@ -13,13 +13,10 @@ export class ListComponent implements OnInit {
   public items: Observable<Array<Item>>;
 
   constructor(
-    private route: ActivatedRoute,
     private itemsService: ItemsService
   ) { }
 
   ngOnInit() {
-    console.log('test: ', this.route);
-    // this.route.snapshot.data['items'];
     this.items = this.itemsService.get();
     console.log('items: ', this.items);
   }
