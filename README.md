@@ -1,4 +1,5 @@
 # FirebaseList
+[![Build Status](https://travis-ci.org/bradtaniguchi/firebase-list.svg?branch=master)](https://travis-ci.org/bradtaniguchi/firebase-list/settings)  
 
 A simple, firebase application using angular, angular material, firebase, and travis CI 
 
