@@ -38,12 +38,12 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'ChromeHeadless'],
     singleRun: false, // always do single
     customLaunchers: {  
       chrome_travis_ci: {
-        base: 'Chrome',
-        flags: ['--no-sandbox']
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox', '--headless', '--disable-gpu']
       }
     }
   });

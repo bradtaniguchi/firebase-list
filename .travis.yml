@@ -22,6 +22,8 @@ before_install:
   - sh -e /etc/init.d/xvfb start
  
 before_script:
+  - npm install -g yargs
+  - npm install -g dotenv
   - npm install -g firebase-tools
   - npm install -g @angular/cli
 

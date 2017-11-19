@@ -4,14 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "test:ci": "ng test --single-run --no-progress --browser=chrome_travis_ci",
+    "start": "npm run config:dev && ng serve",
+    "build": "npm run config:prod && ng build",
     "lint": "ng lint",
+    "test": "ng test",
+    "test:ci": "ng test --single-run --no-progress --browsers chrome_travis_ci",
     "e2e": "ng e2e",
     "e2e:ci": "ng e2e --no-progress --config=protractor-ci.conf.js",
-    "deploy": "firebase deploy"
+    "deploy": "npm run config:prod firebase deploy",
+    "config": "ts-node ./scripts/set-env.ts",
+    "config:dev": "npm run config -- --environment=dev",
+    "config:prod": "npm run config -- --environment=prod"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +43,7 @@
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
+    "dotenv": "^4.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
