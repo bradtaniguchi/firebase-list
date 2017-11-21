@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemsService } from './items/items.service';
+import { ItemService } from './item/item.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
   ],
   declarations: [],
   providers: [
-    ItemsService
+    ItemService
   ]
 })
 export class ServicesModule { }

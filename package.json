@@ -7,7 +7,7 @@
     "start": "npm run config:dev && ng serve",
     "build": "npm run config:prod && ng build",
     "lint": "ng lint",
-    "test": "ng test",
+    "test": "npm run config:dev && ng test --browsers Chrome",
     "test:ci": "npm run config:dev && ng test --single-run --no-progress --browsers chrome_travis_ci",
     "e2e": "npm run config:dev && ng e2e",
     "e2e:ci": "npm run config:dev && ng e2e --no-progress --config=protractor-ci.conf.js",

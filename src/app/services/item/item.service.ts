@@ -11,11 +11,27 @@ import { Observable } from 'rxjs';
  * TODO: update item type definition
  */
 @Injectable()
-export class ItemsService {
-
-  constructor(private db: AngularFirestore) { }
+export class ItemService {
+  private collection: AngularFirestoreCollection<Item>;
+  constructor(private db: AngularFirestore) {
+    this.collection = this.db.collection<Item>('items');
+  }
 
   public get(): Observable<Array<Item>> {
-    return this.db.collection<Item>('items').valueChanges();
+    return this.collection.valueChanges();
+  }
+  /**
+   * Creates the given item, throws an
+   * @param item - the item to add
+   */
+  public create(item: Item): any {
+    console.log('adding item: ', item);
+    this.collection.add(item);
+  }
+  /**
+   * Updates the given item
+   */
+  public update(item: Item): any {
+    console.log('no added yet!');
   }
 }

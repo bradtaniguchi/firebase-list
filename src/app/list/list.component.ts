@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemsService } from '../services/items/items.service';
+import { ItemService } from '../services/item/item.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Item } from '../models/item';
@@ -15,11 +15,11 @@ export class ListComponent implements OnInit {
   public showNewItem: boolean;
 
   constructor(
-    private itemsService: ItemsService
+    private itemService: ItemService
   ) { }
 
   ngOnInit() {
-    this.items = this.itemsService.get();
+    this.items = this.itemService.get();
     this.showNewItem = false;
     this.item = this.getNewItem();
   }

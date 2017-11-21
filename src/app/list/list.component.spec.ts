@@ -2,13 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListComponent } from './list.component';
 import { TestingModule } from '../testing/testing.module';
-import { ItemsService } from 'app/services/items/items.service';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule, MatExpansionModule, MatIconModule } from '@angular/material';
+import { ItemService } from '../services/item/item.service';
 
-const ItemsServiceStub = {
+const ItemServiceStub = {
   get: () => Observable.of([])
 }
 const newItemDefault = {
@@ -28,8 +28,8 @@ describe('ListComponent', () => {
       declarations: [ ListComponent ],
       providers: [
         {
-          provide: ItemsService,
-          useValue: ItemsServiceStub
+          provide: ItemService,
+          useValue: ItemServiceStub
         }
       ]
     })
