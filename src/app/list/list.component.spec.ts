@@ -7,10 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule, MatExpansionModule, MatIconModule } from '@angular/material';
 import { ItemService } from '../services/item/item.service';
+import { Item } from '../models/item';
 
 const ItemServiceStub = {
-  get: () => Observable.of([])
-}
+  get: () => Observable.of([]),
+  create: (item: Item) => undefined
+};
 const newItemDefault = {
   name: '',
   description: '',

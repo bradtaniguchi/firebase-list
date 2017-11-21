@@ -3,7 +3,7 @@
   fxFlexOffset.md="10" fxFlexOffset.gt-md="20" class="all-around-margin">
 
   <mat-accordion>
-    <mat-expansion-panel *ngFor="let item of (items | async)">
+    <mat-expansion-panel *ngFor="let item of (items | async) ">
       <mat-expansion-panel-header>
         <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
           {{item.name}}
@@ -37,7 +37,7 @@
     <form #form="ngForm" (ngSubmit)="submit(item)">
       <mat-expansion-panel *ngIf="showNewItem">
         <mat-expansion-panel-header>
-          <mat-panel-title fxLayout="row" fxLayoutAlign="start center">
+          <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
             <mat-form-field floatPlaceholder="never" fxFlex="75">
               <input matInput
                 placeholder="Name of Item"
@@ -73,7 +73,7 @@
               >
             </textarea>
           </mat-form-field>
-          <div fxLayout="row" fxLayoutAlign="end center">
+          <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
             <button type="button" mat-button (click)="cancel()">
               cancel
             </button>

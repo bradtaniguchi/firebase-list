@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
 
 const AngularFirestoreMock = {
-  collection: (collection?) => {
+  collection: (collection?, func?) => {
     const _items = [];
     return {
       valueChanges: () => Observable.of([]),

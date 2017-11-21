@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 export class ItemService {
   private collection: AngularFirestoreCollection<Item>;
   constructor(private db: AngularFirestore) {
-    this.collection = this.db.collection<Item>('items');
+    this.collection = this.db.collection<Item>('items', ref => ref.orderBy('created', 'desc'));
   }
 
   public get(): Observable<Array<Item>> {

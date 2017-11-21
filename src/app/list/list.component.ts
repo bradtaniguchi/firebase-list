@@ -44,8 +44,10 @@ export class ListComponent implements OnInit {
    * @param item - the item to create
    */
   submit(item: Item) {
-    console.log('submit: ', item);
-    //TODO: add actual submit here
+    item.created = new Date(); // create new date now
+    this.itemService.create(item);
+    this.showNewItem = false;
+    this.item = this.getNewItem();
   }
 
   /**
