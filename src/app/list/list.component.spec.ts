@@ -8,10 +8,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule, MatExpansionModule, MatIconModule } from '@angular/material';
 import { ItemService } from '../services/item/item.service';
 import { Item } from '../models/item';
+import { NavbarService } from 'app/navbar/service/navbar.service';
 
 const ItemServiceStub = {
   get: () => Observable.of([]),
   create: (item: Item) => undefined
+};
+const NavbarServiceStub = {
+  showItem: () => undefined
 };
 const newItemDefault = {
   name: '',
@@ -32,6 +36,10 @@ describe('ListComponent', () => {
         {
           provide: ItemService,
           useValue: ItemServiceStub
+        },
+        {
+          provide: NavbarService,
+          useValue: NavbarServiceStub
         }
       ]
     })

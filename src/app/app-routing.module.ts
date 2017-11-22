@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: 'app/list/list.module#ListModule'
+  },
+  {
+    path: 'settings',
+    loadChildren: 'app/settings/settings.module#SettingsModule'
   }
 ];
 

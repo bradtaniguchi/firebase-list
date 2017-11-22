@@ -3,6 +3,7 @@ import { ItemService } from '../services/item/item.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Item } from '../models/item';
+import { NavbarService } from 'app/navbar/service/navbar.service';
 
 @Component({
   selector: 'app-list',
@@ -15,13 +16,15 @@ export class ListComponent implements OnInit {
   public showNewItem: boolean;
 
   constructor(
-    private itemService: ItemService
+    private itemService: ItemService,
+    private navbarService: NavbarService
   ) { }
 
   ngOnInit() {
     this.items = this.itemService.get();
-    this.showNewItem = false;
+    this.showNewItem = false; // TODO: MIGRATE TO SERVICE!
     this.item = this.getNewItem();
+    this.navbarService.showItem();
   }
 
   /**

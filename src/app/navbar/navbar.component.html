@@ -1,7 +1,18 @@
 <mat-toolbar color="primary" class="z-depth-2">
-  <span data-home-link class="mat-title no-margin clickable">Fabric-list</span>
+  <span data-home-link class="mat-title no-margin clickable"
+    (click)="navigate('/')">
+    Fabric-list
+  </span>
   <span fxFlex></span>
   <span>
+    <button mat-icon-button 
+      *ngIf="showAddItem"
+      (click)="addItem($event)"
+      data-list-add
+      matTooltip="Add Item"
+      aria-label="Add List Item">
+      <mat-icon>add</mat-icon>
+    </button>
     <button mat-icon-button 
       [matMenuTriggerFor]="userMenu"
       data-user-menu
@@ -11,10 +22,13 @@
 
     <mat-menu #userMenu="matMenu">
       <button mat-menu-item 
+        (click)="navigate('/info')"
         data-user-menu-info>Info</button>
       <button mat-menu-item 
+        (click)="navigate('/settings')"
         data-user-menu-settings>Settings</button>
       <button mat-menu-item 
+        (click)="logout()"
         data-user-menu-logout>Logout</button>
     </mat-menu>
   </span>
