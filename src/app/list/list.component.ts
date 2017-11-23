@@ -4,11 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Item } from '../models/item';
 import { NavbarService } from 'app/navbar/service/navbar.service';
+import { expandInOut } from '../animations/expand-in-out.animation';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
+  animations: [expandInOut]
 })
 export class ListComponent implements OnInit {
   public items: Observable<Array<Item>>;

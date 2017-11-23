@@ -35,7 +35,7 @@
     </mat-expansion-panel>
     <!-- create panel -->
     <form #form="ngForm" (ngSubmit)="submit(item)">
-      <mat-expansion-panel *ngIf="showNewItem">
+      <mat-expansion-panel *ngIf="showNewItem" [@expandInOut]>
         <mat-expansion-panel-header>
           <mat-panel-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
             <mat-form-field floatPlaceholder="never" fxFlex="75">
