@@ -3,17 +3,19 @@ import { Router, NavigationStart } from '@angular/router';
 import { NavbarService } from 'app/navbar/service/navbar.service';
 import { AfterViewChecked, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import 'rxjs/add/operator/skip';
+import { slideInOut } from '../animations/slide-in-out.animation';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
+  animations: [slideInOut]
 })
 export class NavbarComponent implements OnInit{
   showAddItem: boolean;
   constructor(
     private router: Router,
     private navbarService: NavbarService
-  ) { 
+  ) {
   }
 
   ngOnInit() {
