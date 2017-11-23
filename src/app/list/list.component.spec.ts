@@ -15,7 +15,8 @@ const ItemServiceStub = {
   create: (item: Item) => undefined
 };
 const NavbarServiceStub = {
-  showItem: () => undefined
+  showItem: () => undefined,
+  addItem: Observable.of()
 };
 const newItemDefault = {
   name: '',

@@ -23,8 +23,13 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.items = this.itemService.get();
     this.showNewItem = false; // TODO: MIGRATE TO SERVICE!
-    this.item = this.getNewItem();
+    // this.item = this.getNewItem();
     this.navbarService.showItem();
+
+    this.navbarService.addItem.subscribe(() => {
+      this.showNewItem = true;
+      this.item = this.getNewItem();
+    });
   }
 
   /**
