@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { NavbarService } from 'app/navbar/service/navbar.service';
-import { AfterViewChecked, AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AfterViewChecked, AfterViewInit } from '@angular/core';
 import 'rxjs/add/operator/skip';
-import { slideInOut } from '../animations/slide-in-out.animation';
+import { growInOut } from '../animations/grow-in-out.animation';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
-  animations: [slideInOut]
+  animations: [growInOut]
 })
 export class NavbarComponent implements OnInit{
   showAddItem: boolean;
