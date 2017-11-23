@@ -3,12 +3,20 @@ export class NavbarPage {
   navigateTo() {
     return browser.get('/');
   }
+
+  nagivateToSettings() {
+    return browser.get('/settings');
+  }
   getTitleText() {
     return element(by.css('[data-home-link]'));
   }
 
   getMenu() {
     return element(by.css('[data-user-menu]'));
+  }
+
+  getAddMenu() {
+    return element(by.css('[data-list-add]'));
   }
 
   getInfoButton() {

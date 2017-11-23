@@ -18,13 +18,22 @@ describe('navbar buttons exist', () => {
     expect(page.getMenu().isPresent()).toBeTruthy();
   });
 
+  it('add button exists on main page', () => {
+    page.navigateTo();
+    expect(page.getAddMenu().isPresent()).toBeTruthy();
+  });
+
+  it('add button doesnt exist on settings page', () => {
+    page.nagivateToSettings();
+    expect(page.getAddMenu().isPresent()).not.toBeTruthy();
+  });
+
   it('menu expands', () => {
     page.navigateTo();
     page.getMenu().click();
     // console.log('test in expands: ', page.getMenu().getInnerHtml());
     expect(true).toBeTruthy();
   });
-
   it('menu info button exists', () => {
     page.navigateTo();
     page.getMenu().click();
