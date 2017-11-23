@@ -19,14 +19,14 @@ export class NavbarService {
    * If the user clicked on the add item button
    */
   get addItem(): Observable<any> {
-    return Observable.from<any>(this._addItem);
+    return this._addItem.asObservable();
   }
 
   /**
    * If we are to show the add-item button
    */
   getShowAddItem(): Observable<boolean> {
-    return Observable.from<boolean>(this._showAddItem);
+    return this._showAddItem.asObservable();
   }
   /**
    * Function called when item is added
