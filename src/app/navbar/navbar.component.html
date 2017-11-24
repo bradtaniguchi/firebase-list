@@ -4,6 +4,25 @@
     Fabric-list
   </span>
   <span fxFlex></span>
+  <span fxFlex="50"> <!-- start autocomplete -->
+    <div class="advance-search">
+      <mat-form-field class="small" floatPlaceholder="never">
+        <input type="text" 
+          placeholder="Search"
+          data-search
+          matInput 
+          [formControl]="searchControl" 
+          [matAutocomplete]="auto">
+      </mat-form-field>
+    </div>
+   
+   <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+         {{ option }}
+      </mat-option>
+   </mat-autocomplete>   
+  </span> <!-- end autocomplete -->
+  <span fxFlex></span>
   <span>
     <button mat-icon-button 
       [@growInOut]

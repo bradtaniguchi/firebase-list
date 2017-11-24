@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { NavbarService } from 'app/navbar/service/navbar.service';
+import { FormControl } from '@angular/forms';
 import { AfterViewChecked, AfterViewInit } from '@angular/core';
 import 'rxjs/add/operator/skip';
 import { growInOut } from '../animations/grow-in-out.animation';
@@ -12,6 +13,8 @@ import { growInOut } from '../animations/grow-in-out.animation';
 })
 export class NavbarComponent implements OnInit{
   showAddItem: boolean;
+  options = [1, 2];
+  searchControl = new FormControl();
   constructor(
     private router: Router,
     private navbarService: NavbarService

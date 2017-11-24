@@ -12,3 +12,15 @@ mat-icon {
 mat-icon.dark {
   color: inherit;
 }
+
+mat-form-field.small {
+  .mat-input-wrapper {
+    padding-bottom: inherit;
+  }
+  .mat-input-infix {
+    border-top: none;
+  }
+  .mat-input-underline {
+    display: none;
+  }
+}
