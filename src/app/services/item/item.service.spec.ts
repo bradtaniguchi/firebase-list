@@ -4,6 +4,7 @@ import { ItemService } from './item.service';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { Item } from '../../models/item';
+import { LoadingBarService } from '../../loading-bar/service/loading-bar.service';
 
 const AngularFirestoreMock = {
   collection: (collection?, func?) => {
@@ -17,7 +18,14 @@ const AngularFirestoreMock = {
     };
   },
   create: (item: Item) => undefined
-}
+};
+
+const LoadingBarServiceStub = {
+  showLoadingBar: () => {
+  },
+  hideLoadingBar: () => {
+  },
+};
 describe('ItemsService', () => {
   beforeEach(() => {
 
@@ -28,6 +36,10 @@ describe('ItemsService', () => {
         {
           provide: AngularFirestore,
           useValue: AngularFirestoreMock
+        },
+        {
+          provide: LoadingBarService,
+          useValue: LoadingBarServiceStub
         }
       ],
     });

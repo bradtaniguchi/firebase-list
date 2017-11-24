@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingBarService } from './service/loading-bar.service';
 
 @Component({
   selector: 'app-loading-bar',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./loading-bar.component.scss']
 })
 export class LoadingBarComponent implements OnInit {
-
-  constructor() { }
+  showLoading: boolean
+  constructor(private loadingBarService: LoadingBarService) { }
 
   ngOnInit() {
+    this.loadingBarService.getShowLoadingBar()
+      .subscribe(show => {
+        this.showLoading = show;
+      });
   }
 
 }
