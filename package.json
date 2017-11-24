@@ -11,7 +11,7 @@
     "test:ci": "npm run config:dev && ng test --single-run --no-progress --browsers chrome_travis_ci",
     "e2e": "npm run config:dev && ng e2e",
     "e2e:ci": "npm run config:dev && ng e2e --no-progress --config=protractor-ci.conf.js",
-    "deploy": "npm run config:prod firebase deploy",
+    "deploy": "npm run build && firebase deploy",
     "config": "ts-node ./scripts/set-env.ts",
     "config:dev": "npm run config -- --environment=dev",
     "config:prod": "npm run config -- --environment=prod"
