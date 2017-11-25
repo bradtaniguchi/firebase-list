@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { AfterViewChecked, AfterViewInit } from '@angular/core';
 import 'rxjs/add/operator/skip';
 import { growInOut } from '../animations/grow-in-out.animation';
+import { AuthService } from '../services/auth/auth.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,7 +18,8 @@ export class NavbarComponent implements OnInit{
   searchControl = new FormControl();
   constructor(
     private router: Router,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private authService: AuthService
   ) {
   }
 
@@ -47,7 +49,6 @@ export class NavbarComponent implements OnInit{
    */
   logout() {
     console.log('function not finished yet!');
+    this.authService.logout();
   }
-
-
 }
