@@ -22,7 +22,18 @@ export class AuthService {
   }
 
   login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    .then((res) => {
+      console.log('response: ', res);
+      console.log('auth state: ', this.afAuth.authState);
+    })
+    .catch((error) => {
+      console.log('error: ', error);
+      // if (error.code === 'auth/popup-blocked') {
+      //   this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+      //   // this.afAuth.auth.signInWithRedirect(new firebase.auth.)
+      // }
+    });
   }
   logout() {
     this.afAuth.auth.signOut();

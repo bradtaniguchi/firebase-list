@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'settings',
     loadChildren: 'app/settings/settings.module#SettingsModule',
     canActivate: [AuthenticatedGuard]
+  },
+  {
+    path: 'login',
+    loadChildren: 'app/login/login.module#LoginModule',
   }
 ];
 
