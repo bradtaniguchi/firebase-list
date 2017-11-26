@@ -5,37 +5,34 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
   private user: firebase.User;
-  constructor(private afAuth: AngularFireAuth) { 
+  constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       this.user = user;
     });
   }
   /**
-   * Returns the AngularFire AuthState as an observable
+   * Returns the current user of the application
+   * @returns the current application user, or null if the user is not authenticated
    */
-  getAuthState(): Observable<firebase.User | null> {
-    return this.afAuth.authState;
-  }
-
   getUser(): firebase.User | null {
     return this.user;
   }
-
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    .then((res) => {
-      console.log('response: ', res);
-      console.log('auth state: ', this.afAuth.authState);
-    })
-    .catch((error) => {
-      console.log('error: ', error);
-      // if (error.code === 'auth/popup-blocked') {
-      //   this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
-      //   // this.afAuth.auth.signInWithRedirect(new firebase.auth.)
-      // }
+  /**
+   * Calls the sign in with redirect function for google authentication.
+   */
+  login(): void {
+    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    .then((response) => {
+      console.log('login response: ', response);
+    }).catch((error) => {
+      console.error('login error: ', error);
     });
   }
-  logout() {
-    this.afAuth.auth.signOut();
+  /**
+   * Logs out the current user, returns the promise
+   * @returns the promise after the logout
+   */
+  logout(): Promise<any> {
+    return this.afAuth.auth.signOut();
   }
 }

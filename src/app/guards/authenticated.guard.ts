@@ -10,20 +10,18 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
-    if(this.authService.getUser() !== null) {
-      console.log('in true guard');
+    if (this.authService.getUser() !== null) {
       return true;
     } else {
-      console.log('showing login');
       this.authService.login();
+      return false;
     }
   }
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-    if(this.authService.getUser() !== null) {
+    if (this.authService.getUser() !== null) {
       return true;
     } else {
       this.authService.login();

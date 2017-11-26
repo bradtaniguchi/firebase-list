@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit{
   }
   /**
    * Navigates to the given url
-   * @param url - the url to navigate to 
+   * @param url - the url to navigate to
    */
   navigate(url: string) {
     this.router.navigateByUrl(url);
@@ -48,7 +48,9 @@ export class NavbarComponent implements OnInit{
    * Logs the user out
    */
   logout() {
-    console.log('function not finished yet!');
-    this.authService.logout();
+    this.authService.logout()
+    .then(() => {
+      //TODO: redirect the user here to the login page
+    });
   }
 }
