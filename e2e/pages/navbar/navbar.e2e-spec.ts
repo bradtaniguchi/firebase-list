@@ -1,11 +1,19 @@
 import { NavbarPage } from './navbar.po';
 import { browser } from 'protractor';
+import { GoogleLoginPage } from '../google-login.po';
 
-describe('navbar buttons exist', () => {
+describe('navbar buttons', () => {
   let page: NavbarPage;
+  let googleLogin: GoogleLoginPage;
   beforeEach(() => {
     page = new NavbarPage();
+    googleLogin = new GoogleLoginPage();
     browser.ignoreSynchronization = true;
+    // googleLogin.checkRedirect();
+    browser.driver.getCurrentUrl()
+    .then((url) => {
+      console.log('url', url);
+    });
   });
 
   it('should display title', () => {
@@ -18,35 +26,44 @@ describe('navbar buttons exist', () => {
     expect(page.getMenu().isPresent()).toBeTruthy();
   });
 
-  it('add button exists on main page', () => {
+  fit('add button exists on main page', () => {
     page.navigateTo();
-    expect(page.getAddMenu().isPresent()).toBeTruthy();
+    const ec = browser.ExpectedConditions;
+    console.log('before');
+    browser.wait(ec.urlContains('/'), 1000);
+    console.log('after');
+    page.getAddMenu().isPresent().then((val) => {
+      console.log('VALUE: ', val);
+      expect(val).toBeTruthy();
+    });
   });
 
   it('add button doesnt exist on settings page', () => {
-    page.nagivateToSettings();
+    page.navigateToSettings();
     expect(page.getAddMenu().isPresent()).not.toBeTruthy();
   });
 
   it('menu expands', () => {
     page.navigateTo();
     page.getMenu().click();
-    // console.log('test in expands: ', page.getMenu().getInnerHtml());
     expect(true).toBeTruthy();
   });
   it('menu info button exists', () => {
     page.navigateTo();
-    page.getMenu().click();
-    expect(page.getInfoButton().isPresent()).toBeTruthy();
+    page.getMenu().click().then(() => {
+      expect(page.getInfoButton().isPresent()).toBeTruthy(); 
+    });
   });
   it('menu settings button exists', () => {
     page.navigateTo();
-    page.getMenu().click();
-    expect(page.getSettingsButton().isPresent()).toBeTruthy();
+    page.getMenu().click().then(() => {
+      expect(page.getSettingsButton().isPresent()).toBeTruthy();
+    });
   });
   it('menu logout button exists', () => {
     page.navigateTo();
-    page.getMenu().click();
-    expect(page.getLogoutButton().isPresent()).toBeTruthy();
+    page.getMenu().click().then(() => {
+      expect(page.getLogoutButton().isPresent()).toBeTruthy();
+    });
   });
 });

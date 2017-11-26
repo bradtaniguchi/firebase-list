@@ -19,6 +19,10 @@ export const environment = {
     apiKey: "${process.env.FIREBASE_API_KEY}",
     projectId: "${process.env.FIREBASE_PROJECT_ID}",
     authDomain: "${process.env.FIREBASE_AUTH_DOMAIN}"
+  },
+  serviceAccount: {
+    email: "${process.env.GOOGLE_LOGIN}",
+    password: "${process.env.GOOGLE_PASSWORD}"
   }
 };
 `;

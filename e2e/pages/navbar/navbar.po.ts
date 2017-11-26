@@ -4,7 +4,7 @@ export class NavbarPage {
     return browser.get('/');
   }
 
-  nagivateToSettings() {
+  navigateToSettings() {
     return browser.get('/settings');
   }
   getTitleText() {
