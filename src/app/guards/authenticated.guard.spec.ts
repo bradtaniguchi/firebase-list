@@ -3,6 +3,7 @@ import { TestBed, async, inject } from '@angular/core/testing';
 import { AuthenticatedGuard } from './authenticated.guard';
 import { AuthService } from '../services/auth/auth.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthenticatedGuard', () => {
   let next: ActivatedRouteSnapshot;
@@ -24,6 +25,9 @@ describe('AuthenticatedGuard', () => {
     };
 
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
       providers: [
         AuthenticatedGuard,
         {
