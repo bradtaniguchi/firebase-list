@@ -14,12 +14,16 @@ export class GoogleLoginPage {
     return element(by.id('identifierId'));
   }
 
-  getNext() {
+  getEmailNext() {
     return element(by.id('identifierNext'));
   }
 
+  getPasswordNext() {
+    return element(by.id('passwordNext'));
+  }
+
   getPassword() {
-    return element(by.id('password'));
+    return element(by.css('[type="password"]'));
   }
 
   getIdentifierLink() {

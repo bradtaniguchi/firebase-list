@@ -1,19 +1,19 @@
 import { NavbarPage } from './navbar.po';
 import { browser } from 'protractor';
 import { GoogleLoginPage } from '../google-login.po';
+import { LoginPage } from '../login.po';
 
 describe('navbar buttons', () => {
   let page: NavbarPage;
   let googleLogin: GoogleLoginPage;
+  let login: LoginPage;
   beforeEach(() => {
     page = new NavbarPage();
+    login = new LoginPage();
     googleLogin = new GoogleLoginPage();
     browser.ignoreSynchronization = true;
-    // googleLogin.checkRedirect();
-    browser.driver.getCurrentUrl()
-    .then((url) => {
-      console.log('url', url);
-    });
+    page.navigateTo();
+    login.login();
   });
 
   it('should display title', () => {
@@ -22,20 +22,25 @@ describe('navbar buttons', () => {
   });
 
   it('menu exists', () => {
-    page.navigateTo();
     expect(page.getMenu().isPresent()).toBeTruthy();
   });
 
   fit('add button exists on main page', () => {
-    page.navigateTo();
-    const ec = browser.ExpectedConditions;
-    console.log('before');
-    browser.wait(ec.urlContains('/'), 1000);
-    console.log('after');
-    page.getAddMenu().isPresent().then((val) => {
-      console.log('VALUE: ', val);
-      expect(val).toBeTruthy();
+    login.onPage().then((val) => {
+      console.log('on login page: ', val);
+      login.login();
     });
+    // page.getAddMenu().isPresent().then((val) => {
+    //   console.log('getAdd button is present: ', val);
+    //   login.onPage().then((onPage) => {
+    //     console.log('in page callback: ', onPage);
+    //     browser.driver.getCurrentUrl().then((url) => {
+    //       console.log('in page callback, url: ', url);
+    //     })
+    //     expect(val).toBeTruthy();
+    //   });
+    // });
+    expect(page.getAddMenu().isPresent()).toBeTruthy();
   });
 
   it('add button doesnt exist on settings page', () => {

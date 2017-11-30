@@ -20,12 +20,14 @@ export class AuthService {
   /**
    * Calls the sign in with redirect function for google authentication.
    */
-  login(): void {
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+  login(): Promise<any> {
+    return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
     .then((response) => {
       console.log('login response: ', response);
+      return undefined;
     }).catch((error) => {
       console.error('login error: ', error);
+      return error;
     });
   }
   /**
