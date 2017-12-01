@@ -10,7 +10,7 @@ export class GoogleLoginPage {
       console.log('checking if we need to login..', needToLogin);
     });
   }
-  getLogin() {
+  getEmail() {
     return element(by.id('identifierId'));
   }
 

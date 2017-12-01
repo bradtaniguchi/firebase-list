@@ -25,21 +25,7 @@ describe('navbar buttons', () => {
     expect(page.getMenu().isPresent()).toBeTruthy();
   });
 
-  fit('add button exists on main page', () => {
-    login.onPage().then((val) => {
-      console.log('on login page: ', val);
-      login.login();
-    });
-    // page.getAddMenu().isPresent().then((val) => {
-    //   console.log('getAdd button is present: ', val);
-    //   login.onPage().then((onPage) => {
-    //     console.log('in page callback: ', onPage);
-    //     browser.driver.getCurrentUrl().then((url) => {
-    //       console.log('in page callback, url: ', url);
-    //     })
-    //     expect(val).toBeTruthy();
-    //   });
-    // });
+  it('add button exists on main page', () => {
     expect(page.getAddMenu().isPresent()).toBeTruthy();
   });
 
