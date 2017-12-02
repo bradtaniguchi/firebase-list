@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material';
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
-  @Output() toggleSearch = new EventEmitter();
-  @Output() search = new EventEmitter();
+  @Output() toggleSearch = new EventEmitter<boolean>();
+  @Output() search = new EventEmitter<string>();
   @Input() searchString: string;
   constructor() { }
 
