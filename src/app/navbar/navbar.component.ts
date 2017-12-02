@@ -54,6 +54,12 @@ export class NavbarComponent implements OnInit{
     this.navbarService.addedItem();
   }
   /**
+   * Function called to make a search
+   */
+  search(searchString: string) {
+    console.log('navbar-search: ', searchString);
+  }
+  /**
    * shows/hides the search navbar, to replace the
    * general navbar. This is only available when in
    * responsive mode

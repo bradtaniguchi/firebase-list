@@ -32,11 +32,11 @@ script:
   - npm run test:ci
 # dont use until e2e:ci is fixed
 #  - npm run e2e:ci
+  - ng build --prod
 
-#  - ng build --prod
-# turn off for now
-#after_success:
-#  - firebase deploy --token $FIREBASE_TOKEN
+#turn off for now
+after_success:
+ - firebase deploy --token $FIREBASE_TOKEN
 
 notifications:
   email:

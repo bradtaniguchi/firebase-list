@@ -1,81 +1,91 @@
-<mat-toolbar color="primary" class="z-depth-2">
-  <span fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="15" fxFlex.gt-md="20">
-    <span>
+<ng-container *ngIf="!showSearch; else showSearchBar">
+  <mat-toolbar color="primary" class="z-depth-2">
+    <span fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="15" fxFlex.gt-md="20">
+      <span>
+        <button mat-icon-button
+          (click)="toggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </span>
+      <span data-home-link class="mat-title no-margin clickable"
+        (click)="navigate('/')">
+        List-It
+      </span>
+      <!-- <span class="mat-subheading-2 no-margin" style="margin: 0 16px">
+        {{(user | async)?.displayName}}
+      </span> -->
+    </span>
+    <span fxFlex.xs fxFlex.sm="75" fxFlex.md="70" fxFlex.gt-md="60"> <!-- start autocomplete -->
+      <div class="advance-search" 
+        fxHide fxShow.gt-sm
+        *ngIf="showAddItem">
+        <mat-form-field class="small" floatPlaceholder="never">
+          <input type="text"
+            placeholder="Search"
+            data-search
+            matInput
+            [formControl]="searchControl"
+            [matAutocomplete]="auto">
+        </mat-form-field>
+      </div>
+
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option">
+          {{ option }}
+        </mat-option>
+    </mat-autocomplete>
+    </span> <!-- end autocomplete -->
+    <span fxFlex.xs="50" fxFlex.sm="20" fxFlex.md="15" fxFlex.gt-md="20">
+      <span fxFlex></span>
       <button mat-icon-button
-        (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
+        [@growInOut]
+        *ngIf="showAddItem"
+        fxShow fxHide.gt-sm
+        (click)="toggleSearch()"
+        data-list-show-search
+        >
+        <mat-icon>search</mat-icon>
       </button>
-    </span>
-    <span data-home-link class="mat-title no-margin clickable"
-      (click)="navigate('/')">
-      List-It
-    </span>
-    <!-- <span class="mat-subheading-2 no-margin" style="margin: 0 16px">
-      {{(user | async)?.displayName}}
-    </span> -->
-  </span>
-  <span fxFlex.xs fxFlex.sm="75" fxFlex.md="70" fxFlex.gt-md="60"> <!-- start autocomplete -->
-    <div class="advance-search" 
-      fxHide fxShow.gt-sm
-      *ngIf="showAddItem">
-      <mat-form-field class="small" floatPlaceholder="never">
-        <input type="text"
-          placeholder="Search"
-          data-search
-          matInput
-          [formControl]="searchControl"
-          [matAutocomplete]="auto">
-      </mat-form-field>
-    </div>
+      <button mat-icon-button
+        [@growInOut]
+        *ngIf="showAddItem"
+        (click)="addItem($event)"
+        data-list-add
+        matTooltip="Add Item"
+        aria-label="Add List Item">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button
+        *ngIf="(user|async); let user"
+        [matMenuTriggerFor]="userMenu"
+        data-user-menu
+        aria-label="User Menu">
+        <!-- <mat-icon>menu</mat-icon> -->
+        <img class="circle-background"
+          src="{{user.photoURL}}"
+          height="32" 
+          width="32">
+      </button>
 
-   <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-         {{ option }}
-      </mat-option>
-   </mat-autocomplete>
-  </span> <!-- end autocomplete -->
-  <span fxFlex.xs="50" fxFlex.sm="15" fxFlex.md="15" fxFlex.gt-md="20">
-    <span fxFlex></span>
-    <button mat-icon-button
-      [@growInOut]
-      *ngIf="showAddItem"
-      fxShow fxHide.gt-sm
-      (click)="showSearch()"
-      data-list-show-search
-      >
-      <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button
-      [@growInOut]
-      *ngIf="showAddItem"
-      (click)="addItem($event)"
-      data-list-add
-      matTooltip="Add Item"
-      aria-label="Add List Item">
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-icon-button
-      *ngIf="(user|async); let user"
-      [matMenuTriggerFor]="userMenu"
-      data-user-menu
-      aria-label="User Menu">
-      <!-- <mat-icon>menu</mat-icon> -->
-      <img class="circle-background"
-        src="{{user.photoURL}}"
-        height="32" 
-        width="32">
-    </button>
-
-    <mat-menu #userMenu="matMenu">
-      <button mat-menu-item
-        (click)="navigate('/info')"
-        data-user-menu-info>Info</button>
-      <button mat-menu-item
-        (click)="navigate('/settings')"
-        data-user-menu-settings>Settings</button>
-      <button mat-menu-item
-        (click)="logout()"
-        data-user-menu-logout>Logout</button>
-    </mat-menu>
-  </span>
-</mat-toolbar>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item
+          (click)="navigate('/info')"
+          data-user-menu-info>Info</button>
+        <button mat-menu-item
+          (click)="navigate('/settings')"
+          data-user-menu-settings>Settings</button>
+        <button mat-menu-item
+          (click)="logout()"
+          data-user-menu-logout>Logout</button>
+      </mat-menu>
+    </span>
+  </mat-toolbar>
+</ng-container>
+<ng-template #showSearchBar>
+  <app-searchbar 
+    (toggleSearch)="toggleSearch()"
+    (search)="serach($event)"
+    [searchString]="searchString"
+    >
+  </app-searchbar>
+</ng-template>

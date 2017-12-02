@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NavbarService } from './service/navbar.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent
   ],
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    SearchbarComponent
   ],
   providers: [
     NavbarService

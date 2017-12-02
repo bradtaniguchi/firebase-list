@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="z-depth-2">
+  <span fxFlex="10">
+    <button mat-icon-button
+      (click)="toggleSearch()"
+      >
+      <mat-icon>
+        close
+      </mat-icon>
+    </button>
+  </span>
+  <span fxFlex="90">
+    search string used here
+  </span>
+  <span fxFlex="10">
+    <button mat-icon-button
+      (click)="emitSearch(this.searchString)">
+      <mat-icon>
+        search
+      </mat-icon>
+    </button>
+  </span>
+</mat-toolbar>
