@@ -17,11 +17,12 @@ import { MatSidenav } from '@angular/material';
   animations: [growInOut]
 })
 export class NavbarComponent implements OnInit{
-  showAddItem: boolean;
-  options = [1, 2];
-  searchControl = new FormControl();
-  user: Observable<firebase.User>;
-  sidenav: MatSidenav;
+  public showAddItem: boolean;
+  public showSearch = false;
+  public options = [1, 2];
+  public searchControl = new FormControl();
+  public user: Observable<firebase.User>;
+  public sidenav: MatSidenav;
   constructor(
     private router: Router,
     private navbarService: NavbarService,
@@ -51,6 +52,14 @@ export class NavbarComponent implements OnInit{
   addItem(event: MouseEvent) {
     console.log('clicked add item');
     this.navbarService.addedItem();
+  }
+  /**
+   * shows/hides the search navbar, to replace the
+   * general navbar. This is only available when in
+   * responsive mode
+   */
+  toggleSearch() {
+    this.showSearch = !this.showSearch;
   }
   /**
    * Navigates to the given url

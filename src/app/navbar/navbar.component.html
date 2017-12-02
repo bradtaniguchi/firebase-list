@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="z-depth-2">
-  <span fxFlex="20">
+  <span fxFlex.xs="10" fxFlex.sm="10" fxFlex.md="15" fxFlex.gt-md="20">
     <span>
       <button mat-icon-button
         (click)="toggleSidenav()">
@@ -8,14 +8,16 @@
     </span>
     <span data-home-link class="mat-title no-margin clickable"
       (click)="navigate('/')">
-      Fabric-list
+      List-It
     </span>
-    <span class="mat-subheading-2 no-margin" style="margin: 0 16px">
+    <!-- <span class="mat-subheading-2 no-margin" style="margin: 0 16px">
       {{(user | async)?.displayName}}
-    </span>
+    </span> -->
   </span>
-  <span fxFlex="60"> <!-- start autocomplete -->
-    <div class="advance-search" *ngIf="showAddItem">
+  <span fxFlex.xs fxFlex.sm="75" fxFlex.md="70" fxFlex.gt-md="60"> <!-- start autocomplete -->
+    <div class="advance-search" 
+      fxHide fxShow.gt-sm
+      *ngIf="showAddItem">
       <mat-form-field class="small" floatPlaceholder="never">
         <input type="text"
           placeholder="Search"
@@ -32,8 +34,17 @@
       </mat-option>
    </mat-autocomplete>
   </span> <!-- end autocomplete -->
-  <span fxFlex="20" >
+  <span fxFlex.xs="50" fxFlex.sm="15" fxFlex.md="15" fxFlex.gt-md="20">
     <span fxFlex></span>
+    <button mat-icon-button
+      [@growInOut]
+      *ngIf="showAddItem"
+      fxShow fxHide.gt-sm
+      (click)="showSearch()"
+      data-list-show-search
+      >
+      <mat-icon>search</mat-icon>
+    </button>
     <button mat-icon-button
       [@growInOut]
       *ngIf="showAddItem"
