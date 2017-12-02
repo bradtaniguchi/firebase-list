@@ -8,6 +8,8 @@ import { growInOut } from '../animations/grow-in-out.animation';
 import { AuthService } from '../services/auth/auth.service';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { SidenavService, Mode } from '../services/sidenav/sidenav.service';
+import { MatSidenav } from '@angular/material';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -19,10 +21,12 @@ export class NavbarComponent implements OnInit{
   options = [1, 2];
   searchControl = new FormControl();
   user: Observable<firebase.User>;
+  sidenav: MatSidenav;
   constructor(
     private router: Router,
     private navbarService: NavbarService,
-    private authService: AuthService
+    private authService: AuthService,
+    private sidenavService: SidenavService
   ) {
   }
 
@@ -32,6 +36,13 @@ export class NavbarComponent implements OnInit{
         this.showAddItem = show;
       });
     this.user = this.authService.user;
+    this.sidenav = this.sidenavService.sidenav;
+  }
+  /**
+   * Toggles the sidenav
+   */
+  toggleSidenav() {
+    this.sidenavService.sidenav.toggle();
   }
   /**
    * Alerts via the navbar service that we added an item.

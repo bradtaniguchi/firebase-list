@@ -1,5 +1,11 @@
 <mat-toolbar color="primary" class="z-depth-2">
   <span fxFlex="20">
+    <span>
+      <button mat-icon-button
+        (click)="toggleSidenav()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </span>
     <span data-home-link class="mat-title no-margin clickable"
       (click)="navigate('/')">
       Fabric-list

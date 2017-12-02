@@ -1,3 +1,4 @@
-mat-sidenav-container {
-  
+@import '../sass/variables';
+mat-sidenav {
+  width: $sidenav-width
 }

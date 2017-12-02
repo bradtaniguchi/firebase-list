@@ -3,5 +3,10 @@
   <app-loading-bar></app-loading-bar>
 </div>
 <mat-sidenav-container class="flex-fill">
+  <mat-sidenav #sidenav
+    [mode]="sidenavMode | async"
+    >
+    in sidenav!
+  </mat-sidenav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>

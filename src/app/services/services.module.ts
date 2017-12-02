@@ -4,6 +4,8 @@ import { ItemService } from './item/item.service';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AuthService } from './auth/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { SidenavService } from './sidenav/sidenav.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -11,12 +13,16 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
     //firebase
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+
+    // for responsive sidenav service
+    FlexLayoutModule
   ],
   declarations: [],
   providers: [
     ItemService,
-    AuthService
+    AuthService,
+    SidenavService
   ]
 })
 export class ServicesModule { }
