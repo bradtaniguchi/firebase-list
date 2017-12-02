@@ -16,6 +16,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { LoadingBarModule } from './loading-bar/loading-bar.module';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { MatSidenavModule } from '@angular/material';
+import { SidenavModule } from 'app/sidenav/sidenav.module';
 @NgModule({
   declarations: [
     AppComponent
@@ -28,6 +29,7 @@ import { MatSidenavModule } from '@angular/material';
 
     ServicesModule,
     NavbarModule,
+    SidenavModule,
     LoadingBarModule,
     // firebase, keep off for now
     AngularFireModule.initializeApp(environment.firebase),

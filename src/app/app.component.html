@@ -1,12 +1,14 @@
-<div style="margin-bottom: 4px">
-  <app-navbar></app-navbar>
-  <app-loading-bar></app-loading-bar>
-</div>
+
+<app-navbar></app-navbar>
+<app-loading-bar></app-loading-bar>
 <mat-sidenav-container class="flex-fill">
   <mat-sidenav #sidenav
     [mode]="sidenavMode | async"
+    class="z-depth-2" 
+    style="margin-right: 4px"
     >
-    in sidenav!
+    <app-sidenav>
+    </app-sidenav>
   </mat-sidenav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
