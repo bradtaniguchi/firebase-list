@@ -4,27 +4,31 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
-  private user: firebase.User;
+  private _user: Observable<firebase.User>;
   constructor(private afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe(user => {
-      this.user = user;
-    });
+    this._user = this.afAuth.authState;
+  }
+
+  get user(): Observable<firebase.User> {
+    return this._user;
   }
   /**
    * Returns the current user of the application
    * @returns the current application user, or null if the user is not authenticated
    */
   getUser(): firebase.User | null {
-    return this.user;
+    return this.afAuth.auth.currentUser;
   }
   /**
    * Calls the sign in with redirect function for google authentication.
    */
   login(): Promise<any> {
-    return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider())
+    const provider = new firebase.auth.GoogleAuthProvider();
+    // provider.addScope('https://www.googleapis.com/auth/plus.login');
+    return this.afAuth.auth.signInWithPopup(provider)
     .then((response) => {
       console.log('login response: ', response);
-      return undefined;
+      return response;
     }).catch((error) => {
       console.error('login error: ', error);
       return error;

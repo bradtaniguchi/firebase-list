@@ -1,0 +1,6 @@
+@import './variables';
+
+.flex-fill {
+  height: calc(100% - #{$top-nav-height});
+  overflow: auto;
+}

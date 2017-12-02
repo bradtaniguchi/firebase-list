@@ -15,6 +15,7 @@ import { ServicesModule } from './services/services.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { LoadingBarModule } from './loading-bar/loading-bar.module';
 import { AuthenticatedGuard } from './guards/authenticated.guard';
+import { MatSidenavModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent
@@ -30,6 +31,8 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
     LoadingBarModule,
     // firebase, keep off for now
     AngularFireModule.initializeApp(environment.firebase),
+
+    MatSidenavModule
   ],
   providers: [
     AuthenticatedGuard

@@ -15,14 +15,21 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('user: ', this.authService.getUser());
     if (this.authService.getUser() !== null) {
       this.router.navigateByUrl('/');
     }
   }
 
   login() {
-    this.authService.login().then((response) => {
+    this.authService.login()
+    .then((response) => {
       console.log('response: ', response);
+      if (response) {
+        this.router.navigateByUrl('/');
+      }
+    }).catch((err) => {
+      console.error('error: ', err);
     });
   }
 }

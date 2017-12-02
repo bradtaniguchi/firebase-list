@@ -1,11 +1,15 @@
 <mat-toolbar color="primary" class="z-depth-2">
-  <span data-home-link class="mat-title no-margin clickable"
-    (click)="navigate('/')">
-    Fabric-list
+  <span fxFlex="20">
+    <span data-home-link class="mat-title no-margin clickable"
+      (click)="navigate('/')">
+      Fabric-list
+    </span>
+    <span class="mat-subheading-2 no-margin" style="margin: 0 16px">
+      {{(user | async)?.displayName}}
+    </span>
   </span>
-  <span fxFlex></span>
-  <span fxFlex="50"> <!-- start autocomplete -->
-    <div class="advance-search">
+  <span fxFlex="60"> <!-- start autocomplete -->
+    <div class="advance-search" *ngIf="showAddItem">
       <mat-form-field class="small" floatPlaceholder="never">
         <input type="text"
           placeholder="Search"
@@ -22,8 +26,8 @@
       </mat-option>
    </mat-autocomplete>
   </span> <!-- end autocomplete -->
-  <span fxFlex></span>
-  <span>
+  <span fxFlex="20" >
+    <span fxFlex></span>
     <button mat-icon-button
       [@growInOut]
       *ngIf="showAddItem"
@@ -34,10 +38,15 @@
       <mat-icon>add</mat-icon>
     </button>
     <button mat-icon-button
+      *ngIf="(user|async); let user"
       [matMenuTriggerFor]="userMenu"
       data-user-menu
       aria-label="User Menu">
-      <mat-icon>menu</mat-icon>
+      <!-- <mat-icon>menu</mat-icon> -->
+      <img class="circle-background"
+        src="{{user.photoURL}}"
+        height="32" 
+        width="32">
     </button>
 
     <mat-menu #userMenu="matMenu">

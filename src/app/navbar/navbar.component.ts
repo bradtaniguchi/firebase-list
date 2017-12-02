@@ -6,6 +6,8 @@ import { AfterViewChecked, AfterViewInit } from '@angular/core';
 import 'rxjs/add/operator/skip';
 import { growInOut } from '../animations/grow-in-out.animation';
 import { AuthService } from '../services/auth/auth.service';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -16,6 +18,7 @@ export class NavbarComponent implements OnInit{
   showAddItem: boolean;
   options = [1, 2];
   searchControl = new FormControl();
+  user: Observable<firebase.User>;
   constructor(
     private router: Router,
     private navbarService: NavbarService,
@@ -28,6 +31,7 @@ export class NavbarComponent implements OnInit{
       .subscribe(show => {
         this.showAddItem = show;
       });
+    this.user = this.authService.user;
   }
   /**
    * Alerts via the navbar service that we added an item.
@@ -50,7 +54,7 @@ export class NavbarComponent implements OnInit{
   logout() {
     this.authService.logout()
     .then(() => {
-      //TODO: redirect the user here to the login page
+      this.router.navigateByUrl('/login');
     });
   }
 }
