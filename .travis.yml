@@ -4,11 +4,12 @@ dist: trusty
 
 language: node_js
 node_js:
-  - "6.9"
+  - "8.2"
 
 branches:
   only:
     - master
+    - build-issue
 addons:
   apt:
     sources:
