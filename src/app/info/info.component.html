@@ -1,0 +1,10 @@
+<div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="80" fxFlex.gt-md="60"
+fxFlexOffset.md="10" fxFlexOffset.gt-md="20" class="all-around-margin">
+
+  <mat-card>
+    Profile information goes here
+    <pre>
+      {{user | async | json}}
+    </pre>
+  </mat-card>
+</div>

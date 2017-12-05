@@ -18,6 +18,10 @@ const routes: Routes = [
     loadChildren: 'app/login/login.module#LoginModule',
   },
   {
+    path: 'info',
+    loadChildren: 'app/info/info.module#InfoModule'
+  },
+  {
     path: '**',
     redirectTo: '/'
   }
