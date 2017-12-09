@@ -19,7 +19,7 @@ describe('SidenavService', () => {
   }));
 
   it ('should expose sidenav', inject([SidenavService], (service: SidenavService) => {
-    service.sidenav = new MatSidenav(undefined, undefined, undefined, undefined);
+    service.sidenav = new MatSidenav(undefined, undefined, undefined, undefined, undefined);
     expect((service as any)._sidenav).toBeTruthy();
   }));
 

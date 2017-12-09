@@ -37,7 +37,7 @@ xdescribe('AuthService', () => {
 
   xit('should call signInWithPopup, on login', inject([AuthService], (service: AuthService) => {
     // const spy = spyOn(AngularFireAuthMock.auth, 'signInWithPopup').and.returnValue();
-    service.login();
+    service.googleLogin();
     // expect(spy.calls.any()).toHaveBeenCalled();
   }));
 

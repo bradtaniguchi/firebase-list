@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'app/services/auth/auth.service';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-info',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-  public user: Observable<firebase.User>;
+  public user: Observable<User>;
   constructor(
     private authService: AuthService
   ) { }

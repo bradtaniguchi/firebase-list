@@ -32,14 +32,46 @@ export class ItemService {
    * Creates the given item, throws an
    * @param item - the item to add
    */
-  public create(item: Item): any {
+  public create(item: Item): Promise<any> {
     console.log('adding item: ', item);
-    this.collection.add(item);
+    return this.collection.add(item)
+    .then((res) => {
+      this.loadingBarService.showLoadingBar();
+      return res;
+    }).catch((err) => {
+      this.loadingBarService.hideLoadingBar();
+      return err;
+    });
   }
   /**
    * Updates the given item
+   * @param item - the item to update
    */
-  public update(item: Item): any {
-    console.log('no added yet!');
+  public update(item: Item): Promise<any> {
+    this.loadingBarService.showLoadingBar();
+    return this.collection.doc(item.id)
+    .update(item)
+    .then((res) => {
+      console.log('Item update res', res);
+      this.loadingBarService.hideLoadingBar();
+      return res;
+    }).catch((err) => {
+      this.loadingBarService.hideLoadingBar();
+      return err;
+    });
+  }
+
+  public delete(item: Item): Promise<any> {
+    this.loadingBarService.showLoadingBar();
+    return this.collection.doc(item.id)
+    .delete()
+    .then((res) => {
+      this.loadingBarService.hideLoadingBar();
+      return res;
+    })
+    .catch((err) => {
+      this.loadingBarService.hideLoadingBar();
+      return err;
+    });
   }
 }

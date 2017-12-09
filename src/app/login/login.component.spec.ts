@@ -4,6 +4,8 @@ import { LoginComponent } from './login.component';
 import { MatCardModule } from '@angular/material';
 import { AuthService } from 'app/services/auth/auth.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/Rx';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -13,9 +15,7 @@ describe('LoginComponent', () => {
   beforeEach(async(() => {
     user = null;
     authServiceStub = {
-      getUser: () => {
-        return user;
-      }
+      user: Observable.of(user)
     };
     TestBed.configureTestingModule({
       imports: [

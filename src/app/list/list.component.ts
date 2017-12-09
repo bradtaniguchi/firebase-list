@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Item } from '../models/item';
 import { NavbarService } from 'app/navbar/service/navbar.service';
 import { expandInOut } from '../animations/expand-in-out.animation';
+import { AuthService } from 'app/services/auth/auth.service';
 
 @Component({
   selector: 'app-list',

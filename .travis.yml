@@ -9,7 +9,7 @@ node_js:
 branches:
   only:
     - master
-    - build-issue
+
 addons:
   apt:
     sources:

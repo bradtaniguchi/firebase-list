@@ -1,5 +1,5 @@
 <div fxFlexFill fxLayout fxLayoutAlign="center center">
-  <mat-card style="width: 400px; height: 100px">
+  <mat-card style="width: 400px; height: 100px" fxLayout="column">
     <button mat-raised-button
       color="primary"
       type="button"
@@ -9,5 +9,14 @@
       (click)="login()">
       Google Login
     </button>
+    <!-- <button mat-raised-button
+      color="primary"
+      type="button"
+      data-login-button
+      fxFlex="80"
+      fxFlexOffset="10"
+      (click)="register()">
+      Google Register
+    </button> -->
   </mat-card>
 </div>

@@ -3,9 +3,12 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, Route
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../services/auth/auth.service';
 import { CanActivateChild } from '@angular/router/src/interfaces';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/take';
 
 @Injectable()
-export class AuthenticatedGuard implements CanActivate, CanActivateChild {
+export class AuthenticatedGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router
@@ -13,22 +16,17 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.getUser() !== null) {
-      return true;
-    } else {
-      // this.authService.login();
-      this.router.navigateByUrl('/login');
-      return false;
-    }
-  }
-  canActivateChild(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-
-    if (this.authService.getUser() !== null) {
-      return true;
-    } else {
-      this.authService.login();
-    }
+      return this.authService.user
+      .take(1)
+      .map(user => {
+        console.log('test user: ', user);
+        return !!user;
+      })
+      .do(loggedIn => {
+        if (!loggedIn) {
+          console.log('access denied');
+          this.router.navigate(['/login']);
+        }
+    });
   }
 }

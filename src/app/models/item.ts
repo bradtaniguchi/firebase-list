@@ -1,7 +1,8 @@
 export interface Item {
+  id?: string;
   name: string;
   description: string;
   created?: Date;
-  amount: number;
-  user?: string;
+  amount?: number;
+  userId?: string;
 }

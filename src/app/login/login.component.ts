@@ -1,34 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core/';
 import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
-
+import { Subscription } from 'rxjs/Subscription';
+import { Subject } from 'rxjs/Subject';
+import { pipe } from 'rxjs/Rx';
+import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit, OnDestroy {
+  private unSub = new Subject();
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    console.log('user: ', this.authService.getUser());
-    if (this.authService.getUser() !== null) {
-      this.router.navigateByUrl('/');
-    }
-  }
-
-  login() {
-    this.authService.login()
-    .then((response) => {
-      console.log('response: ', response);
-      if (response) {
+    this.authService.user
+    .pipe(takeUntil(this.unSub))
+    .subscribe((user) => {
+      if (user) {
         this.router.navigateByUrl('/');
       }
-    }).catch((err) => {
+    });
+  }
+  ngOnDestroy() {
+    this.unSub.next();
+    this.unSub.complete();
+  }
+  login() {
+    this.authService.googleLogin()
+    .catch((err) => {
       console.error('error: ', err);
     });
   }

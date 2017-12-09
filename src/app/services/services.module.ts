@@ -5,6 +5,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AuthService } from './auth/auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { UserService } from './user/user.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [],
   providers: [
     ItemService,
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class ServicesModule { }

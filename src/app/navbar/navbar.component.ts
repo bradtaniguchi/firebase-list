@@ -10,6 +10,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { SidenavService, Mode } from '../services/sidenav/sidenav.service';
 import { MatSidenav } from '@angular/material';
+import { User } from '../models/user';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit{
   public showSearch = false;
   public options = [1, 2];
   public searchControl = new FormControl();
-  public user: Observable<firebase.User>;
+  public user: Observable<User>;
   public sidenav: MatSidenav;
   constructor(
     private router: Router,
