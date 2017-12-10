@@ -6,6 +6,10 @@ import { Item } from '../models/item';
 import { NavbarService } from 'app/navbar/service/navbar.service';
 import { expandInOut } from '../animations/expand-in-out.animation';
 import { AuthService } from 'app/services/auth/auth.service';
+import { Subject } from 'rxjs/Subject';
+import { OnDestroy } from '@angular/core/';
+import { pipe } from 'rxjs/Rx';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -13,7 +17,8 @@ import { AuthService } from 'app/services/auth/auth.service';
   styleUrls: ['./list.component.scss'],
   animations: [expandInOut]
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
+  private unSub = new Subject();
   public items: Observable<Array<Item>>;
   public item: Item;
   public showNewItem: boolean;
@@ -24,15 +29,24 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.items = this.itemService.get();
+    this.items = this.itemService
+    .get()
+    .pipe(takeUntil(this.unSub));
     this.showNewItem = false; // TODO: MIGRATE TO SERVICE!
     // this.item = this.getNewItem();
     this.navbarService.showItem();
 
-    this.navbarService.addItem.subscribe(() => {
+    this.navbarService.addItem
+    .pipe(takeUntil(this.unSub))
+    .subscribe(() => {
       this.showNewItem = true;
       this.item = this.getNewItem();
     });
+  }
+
+  ngOnDestroy() {
+    this.unSub.next();
+    this.unSub.complete();
   }
 
   /**
