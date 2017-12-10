@@ -37,7 +37,7 @@ script:
 
 #turn off for now
 after_success:
- - firebase deploy --token $FIREBASE_TOKEN
+ - npm run deploy
 
 notifications:
   email:
