@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm run config:dev && ng serve",
+    "start": "npm run config:dev && ng serve --hmr",
     "build": "npm run config:prod && ng build",
     "lint": "ng lint",
     "test": "npm run config:dev && ng test --sm=false --browsers Chrome",
@@ -13,7 +13,7 @@
     "e2e:ci": "npm run config:dev && ng e2e --config=protractor-ci.conf.js",
     "deploy": "npm run build && firebase deploy",
     "config": "ts-node ./scripts/set-env.ts",
-    "config:dev": "npm run config -- --environment=dev",
+    "config:dev": "npm run config -- --environment=dev --hmr=true",
     "config:prod": "npm run config -- --environment=prod"
   },
   "private": true,
@@ -41,6 +41,7 @@
     "@angular/cli": "1.6.0",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
+    "@angularclass/hmr": "^2.1.3",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~4.0.1",

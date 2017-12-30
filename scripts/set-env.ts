@@ -11,10 +11,13 @@ require('dotenv').config();
 const dir = './src/environments';
 const environment = argv.environment;
 const isProd = environment === 'prod';
+const hmr = !!argv.hmr;
 const targetPath = `./src/environments/environment.ts`;
+console.log('test hmr: ', hmr);
 const envConfigFile = `
 export const environment = {
   production: ${isProd},
+  hmr: ${hmr},
   firebase: {
     apiKey: "${process.env.FIREBASE_API_KEY}",
     projectId: "${process.env.FIREBASE_PROJECT_ID}",
