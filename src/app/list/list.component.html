@@ -2,7 +2,12 @@
 <div class="all-around-margin">
   <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="70" fxFlex.gt-md="60" 
     fxFlexOffset.md="15" fxFlexOffset.gt-md="20">
-
+    <mat-card *ngIf="(items | async)?.length === 0">
+      <mat-card-content class="mat-subheading-2 text-center">
+        No Items!
+        <!-- todo: add get started button here-->
+      </mat-card-content>
+    </mat-card>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let item of (items | async) ">
         <mat-expansion-panel-header>

@@ -2,10 +2,28 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { ItemService } from './item.service';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { Item } from '../../models/item';
 import { LoadingBarService } from '../../loading-bar/service/loading-bar.service';
+import { AuthService } from '../auth/auth.service';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+// start example code
+const input: Item[][] = [[
+  // { name: 'Dolnośląskie', uname: 'dolnoslaskie', parent: 'polska'},
+  // { name: 'Wrocław', uname: 'wroclaw', parent: 'dolnoslaskie'}
+]];
+
+const data = Observable.from(input);
+
+const collectionStub = {
+  valueChanges: jasmine.createSpy('valueChanges').and.returnValue(data)
+}
+
+const angularFireStoreStub = {
+  collection: jasmine.createSpy('collection').and.returnValue(collectionStub)
+}
+// above example
 const AngularFirestoreMock = {
   collection: (collection?, func?) => {
     const _items = [];
@@ -26,6 +44,9 @@ const LoadingBarServiceStub = {
   hideLoadingBar: () => {
   },
 };
+const AuthServiceStub = {
+  user: new BehaviorSubject({uid: 'some_uid'})
+}
 describe('ItemsService', () => {
   beforeEach(() => {
 
@@ -33,13 +54,21 @@ describe('ItemsService', () => {
     TestBed.configureTestingModule({
       providers: [
         ItemService,
+        // {
+        //   provide: AngularFirestore,
+        //   useValue: AngularFirestoreMock
+        // },
         {
           provide: AngularFirestore,
-          useValue: AngularFirestoreMock
+          useValue: angularFireStoreStub
         },
         {
           provide: LoadingBarService,
           useValue: LoadingBarServiceStub
+        },
+        {
+          provide: AuthService,
+          useValue: AuthServiceStub
         }
       ],
     });
@@ -56,16 +85,17 @@ describe('ItemsService', () => {
   describe('create function ', () => {
     it('should exist', inject([ItemService], (service: ItemService) => {
       expect(service.create).toBeTruthy();
+      expect(angularFireStoreStub.collection).toHaveBeenCalled();
     }));
-
     // it('should call mock', inject([ItemService], (service: ItemService) => {
     //   service.create({
     //     name: 'fake item',
     //     description: 'fake description',
     //     amount: 0
     //   });
-    //   console.log('test: ', AngularFirestoreMock.collection()['_items']);
-    //   expect(AngularFirestoreMock.collection()['_items'].length).toBeGreaterThan(0);
+    //   service.get().subscribe((results) => {
+    //     expect(results).toBeTruthy();
+    //   })
     // }));
   });
 

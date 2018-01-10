@@ -13,7 +13,6 @@ const environment = argv.environment;
 const isProd = environment === 'prod';
 const hmr = !!argv.hmr;
 const targetPath = `./src/environments/environment.ts`;
-console.log('test hmr: ', hmr);
 const envConfigFile = `
 export const environment = {
   production: ${isProd},

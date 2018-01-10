@@ -4,7 +4,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { User } from '../../models/user';
-//https://angularfirebase.com/lessons/google-user-auth-with-firestore-custom-data/
+// https://angularfirebase.com/lessons/google-user-auth-with-firestore-custom-data/
 @Injectable()
 export class AuthService {
   private _user: Observable<User>;

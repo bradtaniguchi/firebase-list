@@ -19,7 +19,7 @@ export class AuthenticatedGuard implements CanActivate {
       return this.authService.user
       .take(1)
       .map(user => {
-        console.log('test user: ', user);
+        console.log('access granded to user: ', user);
         return !!user;
       })
       .do(loggedIn => {
